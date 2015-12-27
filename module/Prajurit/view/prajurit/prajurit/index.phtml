@@ -1,0 +1,35 @@
+<?php
+
+$title = 'Prajurit';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('prajurit', array('action'=>'add'));?>">Add new album</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>Nama</th>
+        <th>Pangkat</th>
+        <th>In Mission</th>
+        <th>&nbsp;</th>
+    </tr>
+    <?php foreach ($prajurit as $praj) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($praj->nama);?></td>
+            <td><?php echo $this->escapeHtml($praj->pangkat);?></td>
+            <td><?php if ($praj->inmission == 1){
+                    echo 'ya';
+                } else {
+                    echo 'tidak';
+                } ?></td>
+            <td>
+                <a href="<?php echo $this->url('prajurit',
+                    array('action'=>'edit', 'id' => $praj->id));?>">Edit</a>
+                <a href="<?php echo $this->url('prajurit',
+                    array('action'=>'delete', 'id' => $praj->id));?>">Delete</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
